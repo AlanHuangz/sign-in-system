@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課程影片驗證入口</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #f4f6f8; margin: 0; padding: 20px; box-sizing: border-box; text-align: center;}
+        .card { background: white; padding: 40px 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 400px; width: 100%; }
+        h2 { color: #333; margin-top: 0; }
+        .btn { display: inline-block; margin-top: 20px; padding: 15px 30px; font-size: 18px; font-weight: bold; color: white; background-color: #007bff; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; box-shadow: 0 4px 6px rgba(0,123,255,0.3); transition: background-color 0.3s; }
+        .btn:hover { background-color: #0056b3; }
+        .note { margin-top: 25px; font-size: 14px; color: #666; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>準備進入影片驗證系統</h2>
+        <p>為確保觀看品質，請點擊下方按鈕進行 Google 帳號驗證。</p>
+        
+        <a id="authLink" href="#" class="btn" target="_blank">點此開啟瀏覽器並驗證</a>
+        
+        <p class="note">⚠️ 如果點擊後沒有反應，請點選右上角（或右下角）選單，選擇<b>「以其他瀏覽器開啟」</b>。</p>
+    </div>
+
+    <script>
+        // 🚨 請將下方引號內的網址，替換成您剛剛在 GAS 複製的「網頁應用程式網址」
+        const gasUrl = "https://script.google.com/macros/s/您的GAS專屬代碼/exec";
+
+        // 抓取 BAND 貼文網址上的影片代碼 (?v=...)
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('v');
+        const authLinkElement = document.getElementById('authLink');
+
+        if (videoId) {
+            // 將影片代碼附加到 GAS 網址後面
+            authLinkElement.href = gasUrl + "?v=" + videoId;
+        } else {
+            // 防呆機制：如果老師貼錯網址沒有帶上參數
+            authLinkElement.innerText = "連結失效，缺少影片代碼";
+            authLinkElement.href = "javascript:void(0);";
+            authLinkElement.style.backgroundColor = "#ccc";
+            authLinkElement.style.boxShadow = "none";
+            authLinkElement.style.cursor = "not-allowed";
+        }
+    </script>
+</body>
+</html>
