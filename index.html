@@ -10,35 +10,27 @@
         h2 { color: #333; margin-top: 0; }
         .btn { display: inline-block; margin-top: 15px; padding: 15px 30px; font-size: 18px; font-weight: bold; color: white; background-color: #007bff; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; box-shadow: 0 4px 6px rgba(0,123,255,0.3); transition: background-color 0.3s; }
         .btn:hover { background-color: #0056b3; }
-        
-        /* 新增的教學區塊樣式 */
-        .tutorial-box { margin-top: 30px; text-align: left; background-color: #fff8e1; border-left: 5px solid #ffc107; padding: 15px; border-radius: 4px; }
-        .tutorial-box h3 { margin-top: 0; font-size: 16px; color: #b28900; }
-        .tutorial-box p { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 10px; }
-        .step { font-size: 14px; color: #333; margin-bottom: 8px; padding-left: 10px; border-left: 2px solid #ffda6a; }
-        .highlight { color: #d93025; font-weight: bold; }
+        .note { margin-top: 25px; font-size: 14px; color: #555; line-height: 1.6; background-color: #e9ecef; padding: 15px; border-radius: 8px; text-align: left;}
+        .highlight { font-weight: bold; color: #d93025; }
     </style>
 </head>
 <body>
     <div class="card">
         <h2>準備進入影片驗證系統</h2>
-        <p>為確保觀看品質，請點擊下方按鈕進行 Google 帳號驗證。</p>
+        <p>為確保觀看順暢，請點擊下方按鈕，並準備好您的專屬信箱進行驗證。</p>
         
         <a id="authLink" href="#" class="btn" target="_blank">點此開啟瀏覽器並驗證</a>
         
-        <div class="tutorial-box">
-            <h3>⚠️ 首次觀看重要提醒</h3>
-            <p>為了保護課程版權，系統需要確認您的 Google 帳號。首次點擊時會出現安全警告，請安心按照以下步驟完成授權：</p>
-            <div class="step">1. 選擇您留給補習班的 Gmail 帳號。</div>
-            <div class="step">2. 看到警告畫面時，點擊左下方 <span class="highlight">「進階」</span>。</div>
-            <div class="step">3. 點擊最下方的 <span class="highlight">「前往『補課影片登入系統』(不安全)」</span>。</div>
-            <div class="step">4. 滑到最底點擊 <span class="highlight">「允許」</span>，即可順利觀看影片！</div>
+        <div class="note">
+            💡 <b>貼心提醒：</b><br>
+            1. 進入系統後，請輸入您 <span class="highlight">留給補習班的 Gmail 信箱</span>。<br>
+            2. 如果點擊按鈕沒有反應，請點選螢幕右上角（或右下角）的選單，選擇<b>「以其他瀏覽器開啟」</b>。
         </div>
-        </div>
+    </div>
 
     <script>
         // 🚨 記得將下方的網址，替換成您自己的 GAS 網頁應用程式網址！
-        const gasUrl = "https://script.google.com/macros/s/AKfycbxkkweDO7wgWtptm6PhclsGCpc3c9XV_rr649xHxHrDjfb8ZgqoqLEpvjUfhNh_Snnu/exec";
+        const gasUrl = "https://script.google.com/macros/s/您的GAS專屬代碼/exec";
 
         const urlParams = new URLSearchParams(window.location.search);
         const videoId = urlParams.get('v');
